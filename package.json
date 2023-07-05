@@ -1,0 +1,29 @@
+{
+  "name": "json-esc",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Sanitize JSON for possible malicious HTML",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "node --test",
+    "lint": "echo ''"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/trygve-lie/json-esc.git"
+  },
+  "keywords": [
+    "html",
+    "xss",
+    "json",
+    "sanitizer",
+    "script",
+    "escaping"
+  ],
+  "author": "Trygve Lie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trygve-lie/json-esc/issues"
+  },
+  "homepage": "https://github.com/trygve-lie/json-esc#readme"
+}

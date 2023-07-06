@@ -15,13 +15,16 @@ const escapeUnsafeChars = (unsafeChar) => {
 
 const replacer = () => {
     return (key, value) => {
-        if (value instanceof Object && !(value instanceof Array)) {
+        if (value instanceof Object && !Array.isArray(value)) {
             return Object.keys(value).reduce((obj, k) => {
-                const saneValue = (typeof value[k] === "string") ? value[k].replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars) : value[k];
                 const saneKey = k.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
-                return {...obj, ...{ [saneKey]: saneValue }};
+                return {...obj, ...{ [saneKey]: value[k] }};
             },{});
         }      
+
+        if (typeof value === 'string') {
+            return value.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);
+        }
         return value;
     };
 };

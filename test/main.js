@@ -119,3 +119,33 @@ test('Malicious - Value contains "\/u2029"', (t) => {
 
     assert.equal(result.key, '\\u2029', 'Should be \\u2029');
 });
+
+test('Malicious - Array with malicious markup', (t) => {
+    const source = [
+        '</script><script>alert("pawned");</script>',
+        '<img src=0 onerror=\"alert(\"pawned\")\">',
+    ];
+
+    const str = JSON.stringify(source, replacer());
+    const result = JSON.parse(str);
+
+    assert.deepEqual(result, [ 
+        '\\u003C\\u002Fscript\\u003E\\u003Cscript\\u003Ealert("pawned");\\u003C\\u002Fscript\\u003E',
+        '\\u003Cimg src=0 onerror="alert("pawned")"\\u003E',
+    ], 'Should be escaped');
+});
+
+test('Malicious - Object with malicious markup', (t) => {
+    const source = { 
+        keya: '</script><script>alert("pawned");</script>',
+        keyb: '<img src=0 onerror=\"alert(\"pawned\")\">',
+    };
+
+    const str = JSON.stringify(source, replacer());
+    const result = JSON.parse(str);
+
+    assert.deepEqual(result, { 
+        keya: '\\u003C\\u002Fscript\\u003E\\u003Cscript\\u003Ealert("pawned");\\u003C\\u002Fscript\\u003E',
+        keyb: '\\u003Cimg src=0 onerror="alert("pawned")"\\u003E',
+    }, 'Should be escaped');
+});

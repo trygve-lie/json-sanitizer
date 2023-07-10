@@ -1,6 +1,6 @@
 {
   "name": "@trygve/json-sanitizer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "type": "module",
   "description": "Sanitize JSON for possible malicious HTML",
   "main": "src/main.js",

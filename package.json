@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/trygve-lie/json-esc.git"
+    "url": "git@github.com:trygve-lie/json-esc.git"
   },
   "keywords": [
     "html",

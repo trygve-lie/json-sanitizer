@@ -1,4 +1,4 @@
-# json-esc
+# @trygve/json-sanitizer
 
 Replacer function to sanitize JSON for possible malicious HTML. 
 
@@ -11,9 +11,9 @@ $ npm install json-esc
 ## Example
 
 ```js
-import esc from 'json-esc';
+import sanitizer from '@trygve/json-sanitizer';
 
-const escaped = JSON.stringify({}, esc());
+const escaped = JSON.stringify({}, sanitizer());
 ```
 
 ## Description
@@ -60,10 +60,10 @@ The following escaping is done:
 This module consist of one method which returns a new method intended to be used as a replacer method for `JSON.stringify()`.
 
 ```js
-import esc from 'json-esc';
+import sanitizer from '@trygve/json-sanitizer';
 
-const replacer = esc();
-const escaped = JSON.stringify({}, replacer);
+const sanitizer = sanitizer();
+const escaped = JSON.stringify({}, sanitizer);
 ```
 
 ### options

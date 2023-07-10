@@ -149,3 +149,15 @@ test('Malicious - Object with malicious markup', (t) => {
         keyb: '\\u003Cimg src=0 onerror="alert("pawned")"\\u003E',
     }, 'Should be escaped');
 });
+
+test('Disable - Disable sanitizing', (t) => {
+    const source = { 
+        keya: '</script><script>alert("pawned");</script>',
+        keyb: '<img src=0 onerror=\"alert(\"pawned\")\">',
+    };
+
+    const str = JSON.stringify(source, replacer({ disable: true }));
+    const result = JSON.parse(str);
+
+    assert.deepEqual(result, source, 'Should not be escaped');
+});

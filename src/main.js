@@ -13,8 +13,10 @@ const escapeUnsafeChars = (unsafeChar) => {
     return ESCAPED_CHARS.get(unsafeChar);
 };
 
-const replacer = () => {
+const replacer = ({ disable = false} = {}) => {
     return (key, value) => {
+        if (disable) return value;
+
         if (value instanceof Object && !Array.isArray(value)) {
             return Object.keys(value).reduce((obj, k) => {
                 const saneKey = k.replace(UNSAFE_CHARS_REGEXP, escapeUnsafeChars);

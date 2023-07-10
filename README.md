@@ -1,11 +1,29 @@
 # json-esc
 
-Sanitize JSON for possible malicious HTML. Prevents possible XSS vectors such as:
+Replacer function to sanitize JSON for possible malicious HTML. 
+
+## Installation
+
+```bash
+$ npm install json-esc
+```
+
+## Example
+
+```js
+import esc from 'json-esc';
+
+const escaped = JSON.stringify({}, esc());
+```
+
+## Description
+
+Replacer function to sanitize JSON for possible malicious HTML. Prevents possible XSS vectors such as:
 
 ```html
 <script type="application/json" id="props">
 { 
-    "key": "<\/script><script>alert(\"pawned\");<\/script>",
+    "key": "</\/script><script>alert(\"pawned\");</\/script>",
 }
 </script>
 ```
@@ -27,24 +45,15 @@ and:
 </script>
 ```
 
-## Installation
+This module escapes sertain characters to prevent any possible XSS vectors according to recommendation by the [WHATWG spec](https://html.spec.whatwg.org/multipage/scripting.html#restrictions-for-contents-of-script-elements).
 
-```bash
-$ npm install json-esc
-```
+The following escaping is done:
 
-## Example
-
-```js
-import esc from 'json-esc';
-
-const escaped = JSON.stringify({}, esc());
-```
-
-## Description
-
-
-
+ * `<` to `\\u003C`
+ * `>` to `\\u003E`
+ * `/` to `\\u002F`
+ * `\u2028` to `\\u2028`
+ * `\u2029` to `\\u2029`
 
 ## API
 

@@ -23,7 +23,7 @@ Replacer function to sanitize JSON for possible malicious HTML. Prevents possibl
 ```html
 <script type="application/json" id="props">
 { 
-    "key": "</\/script><script>alert(\"pawned\");</\/script>",
+    "key": "</script><script>alert(\"pawned\");</script>",
 }
 </script>
 ```
